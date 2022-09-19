@@ -6,7 +6,6 @@ if [ $ID -ne 0 ]; then
   exit 1
 fi
 
-
 echo "Setup Nodejs Repos"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>LOG_FILE
 if [ $? -eq 0 ]
@@ -26,13 +25,16 @@ else
   exit 1
 fi
 
-echo "Add Roboshop Application User"
-useradd roboshop &>>LOG_FILE
-if [ $? -eq 0 ]; then
-  echo Status = SUCCESS
-else
-  echo Status = FAILURE
-  exit 1
+id roboshop &>>LOG_FILE
+if [ $? -ne 0 ]; then
+  echo "Add Roboshop Application User"
+  useradd roboshop &>>LOG_FILE
+  if [ $? -eq 0 ]; then
+    echo Status = SUCCESS
+  else
+    echo Status = FAILURE
+    exit 1
+  fi
 fi
 
 echo "Download Catalogue Application code"
