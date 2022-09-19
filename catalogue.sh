@@ -1,5 +1,12 @@
 LOG_FILE=/tmp/catalogue
 
+ID=$(id -u)
+if [ $ID -eq 0 ]; then
+  echo You should run this script as a root user or with sudo privileges.
+  exit 1
+fi
+
+
 echo "Setup Nodejs Repos"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>LOG_FILE
 if [ $? -eq 0 ]
