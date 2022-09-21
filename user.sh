@@ -18,17 +18,17 @@ if [ $? -ne 0 ]; then
  StatusCheck $?
 fi
 
-echo "Download Catalogue Application code"
+echo "Download User Application code"
 curl -s -L -o /tmp/user.zip "https://github.com/roboshop-devops-project/user/archive/main.zip" &>>LOG_FILE
 StatusCheck $?
 
 cd /home/roboshop
 
 echo "Clean all old App content"
-rm -rf catalogue &>>LOG_FILE
+rm -rf user &>>LOG_FILE
 StatusCheck $?
 
-echo "Extracting Catalogue Application code"
+echo "Extracting user Application code"
 unzip /tmp/user.zip &>>LOG_FILE
 StatusCheck $?
 
