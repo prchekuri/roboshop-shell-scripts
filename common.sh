@@ -65,5 +65,4 @@ NODEJS(){
   echo "Start ${COMPONENT} Service"
   systemctl start ${COMPONENT} &>>LOG_FILE
   StatusCheck $?
-
 }
