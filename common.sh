@@ -75,6 +75,7 @@ NODEJS(){
   SYSTEMD_SETUP
 }
 
+
 JAVA(){
   echo "Install Maven"
   yum install maven -y &>>$LOG_FILE
