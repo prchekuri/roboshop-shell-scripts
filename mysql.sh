@@ -6,7 +6,7 @@ curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/robo
 StatusCheck $?
 
 echo "Disable mysql default module to enable MySQL 5.7"
-dnf module disable mysql &>>$LOG_FILE
+dnf module disable mysql -y &>>$LOG_FILE
 StatusCheck $?
 
 echo "Install MySQL"
