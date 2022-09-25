@@ -42,7 +42,7 @@ APP_PREREQ(){
 
 SYSTEMD_SETUP(){
   echo "Update SystemD service file"
-    sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service
+    sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTHOST/cart.roboshop.internal/' -e 's/USERHOST/user.roboshop.internal/' -e 's/AMQPHOST/rabbitmq.roboshop.internal' /home/roboshop/${COMPONENT}/systemd.service
     StatusCheck $?
 
     echo "Setup ${COMPONENT} Service"
@@ -103,5 +103,14 @@ PYTHON(){
   echo "Install Python Dependencies for App"
   pip3 install -r requirements.txt &>>${LOG_FILE}
   StatusCheck $?
+
+  APP_UID=$(id -u roboshop)
+  APP_GID=$(id -g roboshop)
+
+  echo "Update Payment Configuration file"
+  sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid = ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.ini &>>${LOG_FILE}
+  StatusCheck $?
+
+  #SYSTEMD_SETUP
 
 }
