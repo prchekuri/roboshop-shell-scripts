@@ -11,7 +11,7 @@ yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erl
 StatusCheck $?
 
 echo "Install RabbitMQ"
-yum install rabbitmq-server -y &>>$LOG_FILE
+yum install --nobest rabbitmq-server -y &>>$LOG_FILE
 StatusCheck $?
 
 echo "Start RabbitMQ server"
