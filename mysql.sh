@@ -2,7 +2,7 @@ LOG_FILE=/tmp/mysql
 source common.sh
 
 if [ -z "${ROBOSHOP_MYSQL_PASS}" ]; then
-  echo "Roboshop Mysql Password is needed"
+  echo -e "\e[31m Roboshop Mysql Password env var is needed\e[0m"
   exit 1
 fi
 
