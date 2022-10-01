@@ -14,7 +14,7 @@ echo "updating mongodb listen address"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 StatusCheck $?
 
-echo "Starting MOngoDB service"
+echo "Starting MongoDB service"
 systemctl enable mongod &>>$LOG_FILE
 systemctl restart mongod &>>$LOG_FILE
 StatusCheck $?
@@ -37,3 +37,8 @@ StatusCheck $?
 echo "Load User service schema"
 mongo < users.js &>>$LOG_FILE
 StatusCheck $?
+
+#echo "Load Schema"
+#for schema in catalogue.js users.js ; do
+ # mongo < $(schema) &>>$LOG_FILE
+#done
