@@ -29,6 +29,7 @@ sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' -e '/user/ s/lo
 #we can add for loop for the above statement
 #for component in catalogue user cart shipping payment ; do
  # sed -i -e "/$component/ s/localhost/${component}.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
+#done
 # &>>$LOG_FILE
 
 echo Starting Nginx service
